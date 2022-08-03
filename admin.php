@@ -622,7 +622,7 @@ class plugins_brand_admin extends plugins_brand_db {
 			}
 			elseif(http_request::isMethod('POST')) {
 				// --- ADD or EDIT
-				if (http_request::isPost('id')) $this->id = form_inputEscape::simpleClean($_POST['id']);
+				if (http_request::isPost('id')) $this->id_bd = form_inputEscape::simpleClean($_POST['id']);
 				if (http_request::isPost('parent_id')) $this->parent_id = form_inputEscape::simpleClean($_POST['parent_id']);
 				if (http_request::isPost('type')) $this->type = form_inputEscape::simpleClean($_POST['type']);
 				if (http_request::isPost('menu_bd')) $this->menu_bd = form_inputEscape::simpleClean($_POST['menu_bd']);
