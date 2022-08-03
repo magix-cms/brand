@@ -344,7 +344,8 @@ class plugins_brand_public extends plugins_brand_db {
 			['iso' => $this->template->lang, 'id' => $this->id]
 		);
 		$brandData = $this->getItems('productBrand', ['id_product' => $this->id, 'iso' => $this->lang],'one',false);
-		$collection['brand'] = $this->setBrandData($brandData);
+		$collection['brand'] = empty($brandData) ? [] : $this->setBrandData($brandData);
+		$collection['sameBrand'] = [];
 
 		$imgCollection = $db_catalog->fetchData(
 			['context' => 'all', 'type' => 'images'],
@@ -364,13 +365,15 @@ class plugins_brand_public extends plugins_brand_db {
 			$collection['associated'] = $associatedCollection;
 		}
 
-		$brandCollection = $this->getitems('brandProducts',['id_bd' => $collection['brand']['id_bd'], 'iso' => $this->lang, 'product_excluded' => $this->id],'all',false);
-		if(!empty($brandCollection)) {
-			foreach ($brandCollection as &$product) {
-				$product = $modelCatalog->setItemData($product, null,['brand' => 'brand']);
+		if(!empty($brandData)) {
+			$brandCollection = $this->getitems('brandProducts',['id_bd' => $collection['brand']['id_bd'], 'iso' => $this->lang, 'product_excluded' => $this->id],'all',false);
+			if(!empty($brandCollection)) {
+				foreach ($brandCollection as &$product) {
+					$product = $modelCatalog->setItemData($product, null,['brand' => 'brand']);
+				}
 			}
+			$collection['sameBrand'] = empty($brandCollection) ? [] : $brandCollection;
 		}
-		$collection['sameBrand'] = empty($brandCollection) ? [] : $brandCollection;
 
 		return $modelCatalog->setItemData($collection, null,['brand' => 'brand','sameBrand' => 'sameBrand']);
 	}
