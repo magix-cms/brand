@@ -124,7 +124,7 @@ class plugins_brand_admin extends plugins_brand_db {
 		$search,
 		$tableconfig = [
 		'all' => [
-			'id_bd',
+			'id_bd' => ['title' => 'id', 'type' => 'text', 'class' => 'fixed-td-md text-center'],
 			'name_bd' => ['title' => 'name'],
 			'parent_bd' => ['col' => 'name_bd', 'title' => 'name'],
 			'img_bd' => ['type' => 'bin', 'input' => null, 'class' => ''],
@@ -136,7 +136,7 @@ class plugins_brand_admin extends plugins_brand_db {
 			'date_register'
 		],
 		'parent' => [
-			'id_bd',
+			'id_bd' => ['title' => 'id', 'type' => 'text', 'class' => 'fixed-td-md text-center'],
 			'name_bd' => ['title' => 'name'],
 			'img_bd' => ['type' => 'bin', 'input' => null, 'class' => ''],
 			'resume_bd' => ['class' => 'fixed-td-lg', 'type' => 'bin', 'input' => null],

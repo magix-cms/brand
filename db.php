@@ -145,7 +145,8 @@ class plugins_brand_db {
 							FROM mc_brand mb
     							LEFT JOIN mc_brand_content mbc on mb.id_bd = mbc.id_bd
     							LEFT JOIN mc_lang ml on mbc.id_lang = ml.id_lang
-							WHERE mb.id_bd = :id';
+							WHERE mb.id_bd = :id
+								AND mbc.published_bd = 1';
 					break;
 				case 'brands':
 					$query = "SELECT
@@ -400,10 +401,10 @@ class plugins_brand_db {
 							title_bd = :title_bd,
 							url_bd = :url_bd,
 							resume_bd = :resume_bd,
-							content_bd=:content_bd,
-							seo_title_bd=:seo_title_bd,
-							seo_desc_bd=:seo_desc_bd, 
-							published_bd=:published_bd
+							content_bd = :content_bd,
+							seo_title_bd = :seo_title_bd,
+							seo_desc_bd = :seo_desc_bd, 
+							published_bd = :published_bd
                 		WHERE id_bd = :id_bd 
                 		AND id_lang = :id_lang';
 				break;

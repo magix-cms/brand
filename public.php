@@ -245,9 +245,9 @@ class plugins_brand_public extends plugins_brand_db {
 	 */
 	private function setHreflang() {
 		$brandLangs = $this->getItems('brandLangs',['id' => $this->id],'all',false);
-		$hreflang = array();
+		$hreflang = [];
 		foreach ($brandLangs as $langData) {
-			$hreflang[$langData['id_lang']] = http_url::getUrl().'/'.$langData['iso_lang'].'/brand/'.$this->id.'-'.$langData['name_bd'].'/';
+			$hreflang[$langData['id_lang']] = '/'.$langData['iso_lang'].'/brand/'.$this->id.'-'.$langData['url_bd'].'/';
 		}
 		$this->template->assign('hreflang',$hreflang,true);
 	}
